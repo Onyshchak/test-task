@@ -4,28 +4,23 @@
 </header>
 
 <ng-container *ngIf="gyphyData$ | async as gyphyData">
-	<h1 *ngIf="!loading && !gyphyData.gyphyItems.length">Not Found</h1>
+	<h1 *ngIf="!isLoading && !gyphyData.gyphyItems.length">Not Found</h1>
 
-	<section *ngIf="!loading && gyphyData.gyphyItems.length">
-		<mat-card *ngFor="let item of gyphyData.gyphyItems">
-			<a [href]="item.originalUrl" target="_blank">
-				<img [src]="item.viewUrl" alt="Image" />
-			</a>
-		</mat-card>
-	</section>
+	<ng-container *ngIf="!isLoading && showImages">
+		<section>
+			<ng-container *ngFor="let item of gyphyData.gyphyItems | slice: start:end">
+				<app-image-card [imageResource]="item.originalUrl" [imageUrl]="item.viewUrl"></app-image-card>
+			</ng-container>
+		</section>
 
-	<footer *ngIf="!loading">
-		<app-paginator [length]="gyphyData?.count || 0" (currentPage)="updatePage($event)"></app-paginator>
-	</footer>
+		<footer>
+			<app-paginator
+				[pageIndex]="gyphyGroup.get('page')?.value - 1"
+				[length]="gyphyData?.count || 0"
+				(currentPage)="updatePage($event)"
+			></app-paginator>
+		</footer>
+	</ng-container>
 
-	<div *ngIf="loading && gyphyGroup.get('search')?.value" class="lds-roller">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-	</div>
+	<app-spinner *ngIf="isLoading"></app-spinner>
 </ng-container>

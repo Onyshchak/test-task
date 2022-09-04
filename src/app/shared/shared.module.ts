@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { CommonModule } from '@angular/common';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 const importExportModules = [
 	CommonModule,
@@ -21,7 +22,7 @@ const importExportModules = [
 
 @NgModule({
 	imports: [...importExportModules],
-	exports: [...importExportModules, SelectBarComponent, SearchBarComponent, PaginatorComponent],
-	declarations: [SelectBarComponent, SearchBarComponent, PaginatorComponent]
+	exports: [...importExportModules, SelectBarComponent, SearchBarComponent, PaginatorComponent, SpinnerComponent],
+	declarations: [SelectBarComponent, SearchBarComponent, PaginatorComponent, SpinnerComponent]
 })
 export class SharedModule {}

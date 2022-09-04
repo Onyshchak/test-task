@@ -1,0 +1,24 @@
+:host {
+	width: inherit;
+	height: inherit;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: yellow;
+
+	> mat-card {
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		width: 100%;
+		box-sizing: border-box;
+		background-color: lightgray;
+
+		img {
+			max-height: 100%;
+			max-width: 100%;
+		}
+	}
+}
