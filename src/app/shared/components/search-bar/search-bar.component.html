@@ -1,0 +1,6 @@
+<mat-form-field appearance="fill">
+  <mat-label>{{ label }}</mat-label>
+  <input matInput type="text" minlength="3" #searchInput (keyup)="emitString(searchInput.value)">
+</mat-form-field>
+
+
