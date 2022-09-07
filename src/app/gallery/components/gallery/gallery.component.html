@@ -1,7 +1,6 @@
 <header [formGroup]="gyphyGroup">
 	<app-select-bar formControlName="type" ngDefaultControl [cases]="typeCases"></app-select-bar>
 	<app-chip-textbox (emitChips)="changeSearch($event)"></app-chip-textbox>
-	<!--	<app-search-bar formControlName="search" ngDefaultControl></app-search-bar>-->
 </header>
 
 <ng-container *ngIf="gyphyData$ | async as gyphyData">
@@ -9,7 +8,7 @@
 
 	<ng-container *ngIf="!isLoading && showImages">
 		<section>
-			<ng-container *ngFor="let item of gyphyData.gyphyItems | slice: start:end">
+			<ng-container *ngFor="let item of gyphyData.gyphyItems | slice: start:end; trackBy: trackByKey">
 				<app-image-card [imageResource]="item.originalUrl" [imageUrl]="item.viewUrl"></app-image-card>
 			</ng-container>
 		</section>

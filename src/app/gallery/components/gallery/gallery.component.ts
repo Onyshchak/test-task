@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { GiphyService } from 'src/app/services/giphy.service';
-import { Gyphy, GyphyType } from 'src/app/interfaces/gyphy';
+import { Gyphy, GyphyItem, GyphyType } from 'src/app/interfaces/gyphy';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { distinctUntilChanged, filter, map, Observable, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -37,6 +37,10 @@ export class GalleryComponent implements OnInit {
 
 	changeSearch(chips: string[]): void {
 		this.gyphyGroup.get('search')!.setValue(chips.join(' '));
+	}
+
+	trackByKey(index: number, item: GyphyItem): string {
+		return item.id;
 	}
 
 	private createForm(): void {
