@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { Gyphy, GyphyItem, GyphyType } from '../interfaces/gyphy';
@@ -19,8 +19,9 @@ export class GiphyService {
 			limit: environment.giphyAPI.limit
 		};
 		const url = `${environment.giphyAPI.url}${contentType}/search`;
-
-		return this.http.get<GyphyAPI>(url, { params: queryParams }).pipe(map(this.transformGyphy));
+		return this.http
+			.get<GyphyAPI>(url, { params: queryParams })
+			.pipe(map(this.transformGyphy), catchError(this.handleError<Gyphy>('get images', { count: 0, gyphyItems: [] })));
 	}
 
 	private transformGyphy(data: GyphyAPI): Gyphy {
@@ -36,15 +37,24 @@ export class GiphyService {
 			gyphyItems: items
 		};
 	}
+
+	private handleError<T>(operation = 'operation', result?: T) {
+		return (error: any): Observable<T> => {
+			console.error(`${operation} failed: ${error.meta.msg}`);
+
+			return of(result as T);
+		};
+	}
 }
 
-interface GyphyAPI {
+export interface GyphyAPI {
 	data: GyphyItemAPI[];
 	pagination: {
 		total_count: number;
 	};
 	meta: {
 		status: number;
+		msg: string;
 	};
 }
 

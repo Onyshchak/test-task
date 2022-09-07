@@ -9,9 +9,15 @@
 
 	> header {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
 		gap: 5vw;
+		padding: 8px 5vw;
+		box-sizing: border-box;
+
+		::ng-deep app-select-bar {
+			mat-form-field {
+				width: 140px;
+			}
+		}
 	}
 
 	> section {

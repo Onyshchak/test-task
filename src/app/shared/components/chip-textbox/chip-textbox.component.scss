@@ -1,0 +1,62 @@
+form > header {
+	display: flex;
+
+	.btn-add {
+		margin: 16px 0 0 8px;
+	}
+}
+
+.chip-list {
+	&_item {
+		transition: all 0.3s ease-in-out;
+		background-color: #fff;
+		border-radius: 30px;
+		border: 1px solid #d3d2d2;
+		display: inline-flex;
+		align-items: center;
+		padding: 4px 6px 4px 6px;
+		margin-right: 6px;
+		margin-bottom: 6px;
+
+		&:hover {
+			background-color: #e3e2e2;
+		}
+	}
+}
+
+.btn {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: all 150ms;
+
+	&-add {
+		background: lightgray;
+		transform: rotateZ(45deg);
+
+		&:hover,
+		&:focus {
+			background: lightcoral;
+			transform: rotateZ(135deg);
+		}
+	}
+
+	&-close {
+		margin-left: 4px;
+		background: dodgerblue;
+
+		&:hover,
+		&:focus {
+			transform: rotateZ(90deg);
+			background: royalblue;
+		}
+	}
+}

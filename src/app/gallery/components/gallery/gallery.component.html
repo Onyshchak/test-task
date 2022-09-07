@@ -1,6 +1,7 @@
-<header>
-	<app-search-bar (emitValue)="updateSearch($event)"></app-search-bar>
-	<app-select-bar [cases]="typeCases" (emitValue)="updateType($event)"></app-select-bar>
+<header [formGroup]="gyphyGroup">
+	<app-select-bar formControlName="type" ngDefaultControl [cases]="typeCases"></app-select-bar>
+	<app-chip-textbox (emitChips)="changeSearch($event)"></app-chip-textbox>
+	<!--	<app-search-bar formControlName="search" ngDefaultControl></app-search-bar>-->
 </header>
 
 <ng-container *ngIf="gyphyData$ | async as gyphyData">

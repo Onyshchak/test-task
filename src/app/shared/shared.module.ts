@@ -9,6 +9,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ChipTextboxComponent } from './components/chip-textbox/chip-textbox.component';
 
 const importExportModules = [
 	CommonModule,
@@ -22,7 +23,14 @@ const importExportModules = [
 
 @NgModule({
 	imports: [...importExportModules],
-	exports: [...importExportModules, SelectBarComponent, SearchBarComponent, PaginatorComponent, SpinnerComponent],
-	declarations: [SelectBarComponent, SearchBarComponent, PaginatorComponent, SpinnerComponent]
+	exports: [
+		...importExportModules,
+		SelectBarComponent,
+		SearchBarComponent,
+		PaginatorComponent,
+		SpinnerComponent,
+		ChipTextboxComponent
+	],
+	declarations: [SelectBarComponent, SearchBarComponent, PaginatorComponent, SpinnerComponent, ChipTextboxComponent]
 })
 export class SharedModule {}
